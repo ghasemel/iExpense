@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		733934412B8E86A800E01038 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733934402B8E86A800E01038 /* AddView.swift */; };
 		73DD11E52B87D6E600C29067 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 73DD11E32B87D6E600C29067 /* README.md */; };
 		73DD11E62B87D6E600C29067 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 73DD11E42B87D6E600C29067 /* .gitignore */; };
 		73FAA0552B854A1A0083FF4E /* iExpenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FAA0542B854A1A0083FF4E /* iExpenseApp.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		733934402B8E86A800E01038 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		73DD11E32B87D6E600C29067 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		73DD11E42B87D6E600C29067 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		73FAA0512B854A1A0083FF4E /* iExpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iExpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +59,7 @@
 		73FAA0532B854A1A0083FF4E /* iExpense */ = {
 			isa = PBXGroup;
 			children = (
+				733934402B8E86A800E01038 /* AddView.swift */,
 				73FAA0542B854A1A0083FF4E /* iExpenseApp.swift */,
 				73FAA0562B854A1A0083FF4E /* ContentView.swift */,
 				73FAA0582B854A1B0083FF4E /* Assets.xcassets */,
@@ -147,6 +150,7 @@
 			files = (
 				73FAA0572B854A1A0083FF4E /* ContentView.swift in Sources */,
 				73FAA0552B854A1A0083FF4E /* iExpenseApp.swift in Sources */,
+				733934412B8E86A800E01038 /* AddView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
