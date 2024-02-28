@@ -43,38 +43,65 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List{
-                ForEach(expenses.items, id: \.id) { item in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(item.name)
-                                .font(.headline)
+                ForEach(groupedItems, id: \.0) { type, items in
+                    Section(type) {
+                        ForEach(items, id:\.id) { item in
                             
-                            Text(item.type)
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text(item.name)
+                                        .font(.headline)
+                                    
+                                    Text(item.type)
+                                }
+                                
+                                Spacer()
+                                
+                                Text(item.amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                                    .background {
+                                        switch item.amount {
+                                            case 0..<10:
+                                                Color.green
+                                            case 10..<99:
+                                                Color.orange
+                                            case 1000...:
+                                                Color.red
+                                            default:
+                                                Color.blue
+                                        }
+                                    }
+                            }
+                        }.onDelete { indices in
+                            self.deleteItems(indices, fromCategory: type)
                         }
-                        
-                        Spacer()
-                        
-                        Text(item.amount, format: .currency(code: "USD"))
                     }
-                    
                 }
-                .onDelete(perform: removeItems)
             }
             .navigationTitle("iExpense")
             .toolbar {
                 Button("Add Expense", systemImage: "plus.circle") {
                     showingAddExpense = true
-                }	                
+                }
             }
             .sheet(isPresented: $showingAddExpense) {
                 AddView(expenses: expenses)
             }
+            .listStyle(.grouped)
         }
     }
     
-    func removeItems(at offsets: IndexSet) {
-        expenses.items.remove(atOffsets: offsets)
+    var groupedItems: [(String, [ExpenseItem])] {
+        Dictionary(grouping: expenses.items, by: { $0.type }).sorted { $0.key < $1.key }
     }
+    
+    private func deleteItems(_ indices: IndexSet, fromCategory category: String) {
+        if let categoryIndex = groupedItems.firstIndex(where: { $0.0 == category }) {
+            expenses.items.removeAll { item in
+                return groupedItems[categoryIndex].1.contains { $0.id == item.id } && indices.contains(groupedItems[categoryIndex].1.firstIndex(where: { $0.id == item.id })!)
+            }
+        }
+    }
+
 }
 
 #Preview {
